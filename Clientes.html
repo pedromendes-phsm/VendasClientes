@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VendaFácil</title>
+  <title>Sistema de Vendas</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -14,6 +14,7 @@
       min-height: 100vh;
     }
 
+    /* ── LOGIN ── */
     #loginScreen {
       display: flex;
       align-items: center;
@@ -32,10 +33,23 @@
       box-shadow: 0 25px 50px rgba(0,0,0,0.5);
     }
 
-    .login-box h1 { font-size: 1.8rem; margin-bottom: 6px; color: #f8fafc; }
-    .login-box p { color: #94a3b8; margin-bottom: 28px; font-size: 0.9rem; }
+    .login-box h1 {
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+      color: #f8fafc;
+    }
 
-    .tab-btns { display: flex; gap: 8px; margin-bottom: 24px; }
+    .login-box p {
+      color: #94a3b8;
+      margin-bottom: 28px;
+      font-size: 0.9rem;
+    }
+
+    .tab-btns {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
 
     .tab-btn {
       flex: 1;
@@ -49,9 +63,15 @@
       transition: all 0.2s;
     }
 
-    .tab-btn.active { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+    .tab-btn.active {
+      background: #3b82f6;
+      border-color: #3b82f6;
+      color: #fff;
+    }
 
-    .form-group { margin-bottom: 16px; }
+    .form-group {
+      margin-bottom: 16px;
+    }
 
     .form-group label {
       display: block;
@@ -60,8 +80,7 @@
       margin-bottom: 6px;
     }
 
-    .form-group input,
-    .form-group select {
+    .form-group input, .form-group select {
       width: 100%;
       padding: 12px 14px;
       background: #0f172a;
@@ -72,8 +91,10 @@
       transition: border-color 0.2s;
     }
 
-    .form-group input:focus,
-    .form-group select:focus { outline: none; border-color: #3b82f6; }
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
 
     .btn-primary {
       width: 100%;
@@ -89,11 +110,17 @@
     }
 
     .btn-primary:hover { background: #2563eb; }
-    .btn-primary:disabled { background: #334155; cursor: not-allowed; }
 
-    .error-msg { color: #f87171; font-size: 0.85rem; margin-top: 10px; text-align: center; }
+    .error-msg {
+      color: #f87171;
+      font-size: 0.85rem;
+      margin-top: 10px;
+      text-align: center;
+    }
 
-    #adminPanel, #clientPanel { display: none; }
+    /* ── ADMIN ── */
+    #adminPanel { display: none; }
+    #clientPanel { display: none; }
 
     .topbar {
       background: #1e293b;
@@ -122,6 +149,7 @@
 
     .container { padding: 28px; max-width: 1200px; margin: 0 auto; }
 
+    /* ── CARDS RESUMO ── */
     .summary-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -143,6 +171,7 @@
     .card.red .value { color: #f87171; }
     .card.blue .value { color: #60a5fa; }
 
+    /* ── FORM VENDA ── */
     .section-title {
       font-size: 1rem;
       font-weight: 600;
@@ -180,12 +209,16 @@
     }
 
     .btn-add:hover { background: #16a34a; }
-    .btn-add:disabled { background: #334155; cursor: not-allowed; }
 
-    .filters { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+    /* ── FILTROS ── */
+    .filters {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
 
-    .filters input,
-    .filters select {
+    .filters input, .filters select {
       padding: 9px 13px;
       background: #1e293b;
       border: 1px solid #334155;
@@ -194,9 +227,12 @@
       font-size: 0.88rem;
     }
 
-    .filters input:focus,
-    .filters select:focus { outline: none; border-color: #3b82f6; }
+    .filters input:focus, .filters select:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
 
+    /* ── TABELA ── */
     .table-wrap {
       background: #1e293b;
       border: 1px solid #334155;
@@ -204,8 +240,14 @@
       overflow: hidden;
     }
 
-    table { width: 100%; border-collapse: collapse; }
-    thead { background: #0f172a; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: #0f172a;
+    }
 
     th {
       padding: 13px 16px;
@@ -253,8 +295,13 @@
     .btn-edit { background: #1d4ed8; color: #fff; }
     .btn-delete { background: #991b1b; color: #fff; }
 
-    .empty-state { text-align: center; padding: 48px; color: #475569; }
+    .empty-state {
+      text-align: center;
+      padding: 48px;
+      color: #475569;
+    }
 
+    /* ── CLIENTE ── */
     .client-header {
       background: linear-gradient(135deg, #1e3a5f, #1e293b);
       border-bottom: 1px solid #334155;
@@ -264,6 +311,14 @@
     .client-header h2 { font-size: 1.3rem; color: #f8fafc; }
     .client-header p { color: #94a3b8; font-size: 0.85rem; margin-top: 2px; }
 
+    .client-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    /* ── MODAL ── */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -288,7 +343,11 @@
 
     .modal h3 { font-size: 1.1rem; margin-bottom: 20px; color: #f8fafc; }
 
-    .modal-btns { display: flex; gap: 10px; margin-top: 20px; }
+    .modal-btns {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
 
     .btn-cancel {
       flex: 1;
@@ -313,42 +372,6 @@
       cursor: pointer;
     }
 
-    /* Loading */
-    .loading {
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      border: 2px solid #ffffff44;
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: spin 0.6s linear infinite;
-      margin-right: 8px;
-      vertical-align: middle;
-    }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 10px;
-      padding: 14px 20px;
-      font-size: 0.9rem;
-      color: #f1f5f9;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      z-index: 9999;
-      transform: translateY(80px);
-      opacity: 0;
-      transition: all 0.3s;
-    }
-
-    .toast.show { transform: translateY(0); opacity: 1; }
-    .toast.success { border-left: 4px solid #4ade80; }
-    .toast.error { border-left: 4px solid #f87171; }
-
     @media (max-width: 600px) {
       .container { padding: 16px; }
       .form-grid { grid-template-columns: 1fr; }
@@ -359,10 +382,9 @@
 </head>
 <body>
 
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
-
-<!-- LOGIN -->
+<!-- ══════════════════════════════════════
+     TELA DE LOGIN
+══════════════════════════════════════ -->
 <div id="loginScreen">
   <div class="login-box">
     <h1>📦 VendaFácil</h1>
@@ -373,6 +395,7 @@
       <button class="tab-btn" onclick="switchTab('client')">Cliente</button>
     </div>
 
+    <!-- Login Admin -->
     <div id="adminLogin">
       <div class="form-group">
         <label>Usuário</label>
@@ -382,22 +405,25 @@
         <label>Senha</label>
         <input type="password" id="adminPass" placeholder="••••••" />
       </div>
-      <button class="btn-primary" id="btnLoginAdmin" onclick="loginAdmin()">Entrar como Admin</button>
+      <button class="btn-primary" onclick="loginAdmin()">Entrar como Admin</button>
       <p class="error-msg" id="adminError"></p>
     </div>
 
+    <!-- Login Cliente -->
     <div id="clientLogin" style="display:none">
       <div class="form-group">
         <label>Seu CPF ou E-mail cadastrado</label>
         <input type="text" id="clientId" placeholder="Ex: 123.456.789-00" />
       </div>
-      <button class="btn-primary" id="btnLoginClient" onclick="loginClient()">Consultar Minhas Compras</button>
+      <button class="btn-primary" onclick="loginClient()">Consultar Minhas Compras</button>
       <p class="error-msg" id="clientError"></p>
     </div>
   </div>
 </div>
 
-<!-- ADMIN -->
+<!-- ══════════════════════════════════════
+     PAINEL ADMIN
+══════════════════════════════════════ -->
 <div id="adminPanel">
   <div class="topbar">
     <div>
@@ -408,8 +434,11 @@
   </div>
 
   <div class="container">
+
+    <!-- Cards Resumo -->
     <div class="summary-cards" id="adminCards"></div>
 
+    <!-- Formulário Nova Venda -->
     <div class="sale-form">
       <div class="section-title">➕ Registrar Nova Venda</div>
       <div class="form-grid">
@@ -443,12 +472,12 @@
           </select>
         </div>
       </div>
-      <button class="btn-add" id="btnAdd" onclick="addSale()">✔ Registrar Venda</button>
+      <button class="btn-add" onclick="addSale()">✔ Registrar Venda</button>
     </div>
 
+    <!-- Filtros -->
     <div class="filters">
-      <input type="text" id="filterSearch" placeholder="🔍 Buscar cliente ou produto..."
-             oninput="renderTable()" style="flex:1; min-width:200px" />
+      <input type="text" id="filterSearch" placeholder="🔍 Buscar cliente ou produto..." oninput="renderTable()" style="flex:1; min-width:200px" />
       <select id="filterStatus" onchange="renderTable()">
         <option value="">Todas as situações</option>
         <option value="pendente">Pendente</option>
@@ -458,6 +487,7 @@
       </select>
     </div>
 
+    <!-- Tabela -->
     <div class="table-wrap">
       <table>
         <thead>
@@ -474,10 +504,13 @@
         <tbody id="salesTableBody"></tbody>
       </table>
     </div>
+
   </div>
 </div>
 
-<!-- CLIENTE -->
+<!-- ══════════════════════════════════════
+     PAINEL CLIENTE
+══════════════════════════════════════ -->
 <div id="clientPanel">
   <div class="client-header">
     <div style="display:flex; justify-content:space-between; align-items:center">
@@ -490,7 +523,8 @@
   </div>
 
   <div class="container">
-    <div class="summary-cards" id="clientCards"></div>
+    <div class="client-summary" id="clientCards"></div>
+
     <div class="table-wrap">
       <table>
         <thead>
@@ -508,11 +542,13 @@
   </div>
 </div>
 
-<!-- MODAL EDITAR -->
+<!-- ══════════════════════════════════════
+     MODAL EDITAR
+══════════════════════════════════════ -->
 <div class="modal-overlay" id="editModal">
   <div class="modal">
     <h3>✏️ Editar Venda</h3>
-    <input type="hidden" id="editDocId" />
+    <input type="hidden" id="editId" />
     <div class="form-grid" style="grid-template-columns:1fr 1fr">
       <div class="form-group">
         <label>Cliente</label>
@@ -546,45 +582,81 @@
     </div>
     <div class="modal-btns">
       <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
-      <button class="btn-save" id="btnSaveEdit" onclick="saveEdit()">Salvar Alterações</button>
+      <button class="btn-save" onclick="saveEdit()">Salvar Alterações</button>
     </div>
   </div>
 </div>
 
-<!-- FIREBASE SDK -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import {
-    getFirestore, collection, addDoc, getDocs,
-    doc, updateDoc, deleteDoc, query, orderBy, onSnapshot
-  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-  // ══════════════════════════════════════════
-  // 🔥 SUBSTITUA AQUI PELAS SUAS CREDENCIAIS
-  // ══════════════════════════════════════════
-  const firebaseConfig = {
-    apiKey: "SUA_API_KEY",
-    authDomain: "SEU_PROJETO.firebaseapp.com",
-    projectId: "SEU_PROJETO_ID",
-    storageBucket: "SEU_PROJETO.appspot.com",
-    messagingSenderId: "SEU_SENDER_ID",
-    appId: "SEU_APP_ID"
-  };
-  // ══════════════════════════════════════════
-
-  const app = initializeApp(firebaseConfig);
-  const db  = getFirestore(app);
-
-  // ── CREDENCIAIS ADMIN (altere se quiser) ──
+<script>
+  // ── CREDENCIAIS ADMIN (altere aqui) ──
   const ADMIN_USER = 'admin';
   const ADMIN_PASS = '1234';
 
-  let sales = [];
+  // ── DADOS ──
+  let sales = JSON.parse(localStorage.getItem('vendafacil_sales') || '[]');
+  let currentClient = null;
   let currentTab = 'admin';
-  let currentClientId = null;
-  let unsubscribe = null;
 
-  // ── UTILS ──
+  function saveSales() {
+    localStorage.setItem('vendafacil_sales', JSON.stringify(sales));
+  }
+
+  // ── TABS LOGIN ──
+  function switchTab(tab) {
+    currentTab = tab;
+    document.querySelectorAll('.tab-btn').forEach((b, i) => {
+      b.classList.toggle('active', (i === 0 && tab === 'admin') || (i === 1 && tab === 'client'));
+    });
+    document.getElementById('adminLogin').style.display = tab === 'admin' ? 'block' : 'none';
+    document.getElementById('clientLogin').style.display = tab === 'client' ? 'block' : 'none';
+  }
+
+  // ── LOGIN ADMIN ──
+  function loginAdmin() {
+    const u = document.getElementById('adminUser').value.trim();
+    const p = document.getElementById('adminPass').value;
+    if (u === ADMIN_USER && p === ADMIN_PASS) {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('adminPanel').style.display = 'block';
+      renderTable();
+      renderAdminCards();
+    } else {
+      document.getElementById('adminError').textContent = 'Usuário ou senha incorretos.';
+    }
+  }
+
+  // ── LOGIN CLIENTE ──
+  function loginClient() {
+    const id = document.getElementById('clientId').value.trim().toLowerCase();
+    if (!id) { document.getElementById('clientError').textContent = 'Informe seu CPF ou e-mail.'; return; }
+
+    const clientSales = sales.filter(s => s.clienteId.toLowerCase() === id);
+    if (clientSales.length === 0) {
+      document.getElementById('clientError').textContent = 'Nenhuma compra encontrada para este CPF/e-mail.';
+      return;
+    }
+
+    currentClient = { id, name: clientSales[0].cliente, sales: clientSales };
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('clientPanel').style.display = 'block';
+    document.getElementById('clientWelcome').textContent = `Olá, ${currentClient.name}!`;
+    renderClientPanel();
+  }
+
+  // ── LOGOUT ──
+  function logout() {
+    currentClient = null;
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('adminPanel').style.display = 'none';
+    document.getElementById('clientPanel').style.display = 'none';
+    document.getElementById('adminUser').value = '';
+    document.getElementById('adminPass').value = '';
+    document.getElementById('clientId').value = '';
+    document.getElementById('adminError').textContent = '';
+    document.getElementById('clientError').textContent = '';
+  }
+
+  // ── FORMATAR ──
   function fmt(val) {
     return parseFloat(val).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   }
@@ -600,120 +672,39 @@
     return `<span class="badge ${s}">${map[s] || s}</span>`;
   }
 
-  function showToast(msg, type = 'success') {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = `toast ${type} show`;
-    setTimeout(() => t.classList.remove('show'), 3000);
-  }
-
-  function setLoading(btnId, loading, label) {
-    const btn = document.getElementById(btnId);
-    if (!btn) return;
-    btn.disabled = loading;
-    btn.innerHTML = loading ? `<span class="loading"></span> Aguarde...` : label;
-  }
-
-  // ── TABS ──
-  window.switchTab = function(tab) {
-    currentTab = tab;
-    document.querySelectorAll('.tab-btn').forEach((b, i) => {
-      b.classList.toggle('active', (i === 0 && tab === 'admin') || (i === 1 && tab === 'client'));
-    });
-    document.getElementById('adminLogin').style.display  = tab === 'admin'  ? 'block' : 'none';
-    document.getElementById('clientLogin').style.display = tab === 'client' ? 'block' : 'none';
-  };
-
-  // ── LOGIN ADMIN ──
-  window.loginAdmin = function() {
-    const u = document.getElementById('adminUser').value.trim();
-    const p = document.getElementById('adminPass').value;
-    if (u === ADMIN_USER && p === ADMIN_PASS) {
-      document.getElementById('loginScreen').style.display = 'none';
-      document.getElementById('adminPanel').style.display  = 'block';
-      startRealtimeListener();
-    } else {
-      document.getElementById('adminError').textContent = 'Usuário ou senha incorretos.';
-    }
-  };
-
-  // ── LOGIN CLIENTE ──
-  window.loginClient = async function() {
-    const id = document.getElementById('clientId').value.trim().toLowerCase();
-    if (!id) { document.getElementById('clientError').textContent = 'Informe seu CPF ou e-mail.'; return; }
-
-    setLoading('btnLoginClient', true, 'Consultar Minhas Compras');
-
-    try {
-      const snap = await getDocs(collection(db, 'vendas'));
-      const all  = snap.docs.map(d => ({ docId: d.id, ...d.data() }));
-      const mine = all.filter(s => s.clienteId.toLowerCase() === id);
-
-      if (mine.length === 0) {
-        document.getElementById('clientError').textContent = 'Nenhuma compra encontrada para este CPF/e-mail.';
-        setLoading('btnLoginClient', false, 'Consultar Minhas Compras');
-        return;
-      }
-
-      currentClientId = id;
-      document.getElementById('loginScreen').style.display = 'none';
-      document.getElementById('clientPanel').style.display = 'block';
-      document.getElementById('clientWelcome').textContent = `Olá, ${mine[0].cliente}!`;
-      renderClientPanel(mine);
-    } catch (e) {
-      document.getElementById('clientError').textContent = 'Erro ao conectar. Tente novamente.';
-    }
-
-    setLoading('btnLoginClient', false, 'Consultar Minhas Compras');
-  };
-
-  // ── LISTENER TEMPO REAL (ADMIN) ──
-  function startRealtimeListener() {
-    if (unsubscribe) unsubscribe();
-    const q = query(collection(db, 'vendas'), orderBy('vencimento', 'asc'));
-    unsubscribe = onSnapshot(q, (snap) => {
-      sales = snap.docs.map(d => ({ docId: d.id, ...d.data() }));
-      renderTable();
-      renderAdminCards();
-    });
-  }
-
   // ── ADICIONAR VENDA ──
-  window.addSale = async function() {
+  function addSale() {
     const cliente    = document.getElementById('fCliente').value.trim();
-    const clienteId  = document.getElementById('fClienteId').value.trim().toLowerCase();
+    const clienteId  = document.getElementById('fClienteId').value.trim();
     const produto    = document.getElementById('fProduto').value.trim();
     const valor      = parseFloat(document.getElementById('fValor').value);
     const vencimento = document.getElementById('fVencimento').value;
     const situacao   = document.getElementById('fSituacao').value;
 
     if (!cliente || !clienteId || !produto || isNaN(valor) || !vencimento) {
-      showToast('Preencha todos os campos.', 'error'); return;
+      alert('Preencha todos os campos antes de registrar.'); return;
     }
 
-    setLoading('btnAdd', true, '✔ Registrar Venda');
+    sales.push({
+      id: Date.now(),
+      cliente, clienteId, produto,
+      valor, vencimento, situacao,
+      createdAt: new Date().toISOString()
+    });
 
-    try {
-      await addDoc(collection(db, 'vendas'), {
-        cliente, clienteId, produto, valor, vencimento, situacao,
-        createdAt: new Date().toISOString()
-      });
-      showToast('Venda registrada com sucesso!');
-      ['fCliente','fClienteId','fProduto','fValor','fVencimento'].forEach(id => {
-        document.getElementById(id).value = '';
-      });
-      document.getElementById('fSituacao').value = 'pendente';
-    } catch (e) {
-      showToast('Erro ao salvar. Tente novamente.', 'error');
-    }
+    saveSales();
+    renderTable();
+    renderAdminCards();
 
-    setLoading('btnAdd', false, '✔ Registrar Venda');
-  };
+    // Limpar form
+    ['fCliente','fClienteId','fProduto','fValor','fVencimento'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('fSituacao').value = 'pendente';
+  }
 
   // ── RENDERIZAR TABELA ADMIN ──
-  window.renderTable = function() {
-    const search = (document.getElementById('filterSearch')?.value || '').toLowerCase();
-    const status =  document.getElementById('filterStatus')?.value || '';
+  function renderTable() {
+    const search = document.getElementById('filterSearch').value.toLowerCase();
+    const status = document.getElementById('filterStatus').value;
 
     let filtered = sales.filter(s => {
       const matchSearch = s.cliente.toLowerCase().includes(search) ||
@@ -722,6 +713,9 @@
       const matchStatus = !status || s.situacao === status;
       return matchSearch && matchStatus;
     });
+
+    // Ordenar por vencimento
+    filtered.sort((a, b) => a.vencimento.localeCompare(b.vencimento));
 
     const tbody = document.getElementById('salesTableBody');
     if (filtered.length === 0) {
@@ -741,12 +735,12 @@
         <td>${fmtDate(s.vencimento)}</td>
         <td>${badgeHTML(s.situacao)}</td>
         <td>
-          <button class="btn-action btn-edit" onclick="openEdit('${s.docId}')">Editar</button>
-          <button class="btn-action btn-delete" onclick="deleteSale('${s.docId}')">Excluir</button>
+          <button class="btn-action btn-edit" onclick="openEdit(${s.id})">Editar</button>
+          <button class="btn-action btn-delete" onclick="deleteSale(${s.id})">Excluir</button>
         </td>
       </tr>
     `).join('');
-  };
+  }
 
   // ── CARDS ADMIN ──
   function renderAdminCards() {
@@ -764,71 +758,73 @@
   }
 
   // ── EXCLUIR ──
-  window.deleteSale = async function(docId) {
+  function deleteSale(id) {
     if (!confirm('Deseja excluir esta venda?')) return;
-    try {
-      await deleteDoc(doc(db, 'vendas', docId));
-      showToast('Venda excluída.');
-    } catch (e) {
-      showToast('Erro ao excluir.', 'error');
-    }
-  };
+    sales = sales.filter(s => s.id !== id);
+    saveSales();
+    renderTable();
+    renderAdminCards();
+  }
 
   // ── EDITAR ──
-  window.openEdit = function(docId) {
-    const s = sales.find(s => s.docId === docId);
+  function openEdit(id) {
+    const s = sales.find(s => s.id === id);
     if (!s) return;
-    document.getElementById('editDocId').value      = s.docId;
-    document.getElementById('editCliente').value    = s.cliente;
-    document.getElementById('editClienteId').value  = s.clienteId;
-    document.getElementById('editProduto').value    = s.produto;
-    document.getElementById('editValor').value      = s.valor;
-    document.getElementById('editVencimento').value = s.vencimento;
-    document.getElementById('editSituacao').value   = s.situacao;
+    document.getElementById('editId').value        = s.id;
+    document.getElementById('editCliente').value   = s.cliente;
+    document.getElementById('editClienteId').value = s.clienteId;
+    document.getElementById('editProduto').value   = s.produto;
+    document.getElementById('editValor').value     = s.valor;
+    document.getElementById('editVencimento').value= s.vencimento;
+    document.getElementById('editSituacao').value  = s.situacao;
     document.getElementById('editModal').classList.add('open');
-  };
+  }
 
-  window.closeModal = function() {
+  function closeModal() {
     document.getElementById('editModal').classList.remove('open');
-  };
+  }
 
-  window.saveEdit = async function() {
-    const docId = document.getElementById('editDocId').value;
-    setLoading('btnSaveEdit', true, 'Salvar Alterações');
+  function saveEdit() {
+    const id = parseInt(document.getElementById('editId').value);
+    const idx = sales.findIndex(s => s.id === id);
+    if (idx === -1) return;
 
-    try {
-      await updateDoc(doc(db, 'vendas', docId), {
-        cliente:    document.getElementById('editCliente').value.trim(),
-        clienteId:  document.getElementById('editClienteId').value.trim().toLowerCase(),
-        produto:    document.getElementById('editProduto').value.trim(),
-        valor:      parseFloat(document.getElementById('editValor').value),
-        vencimento: document.getElementById('editVencimento').value,
-        situacao:   document.getElementById('editSituacao').value,
-      });
-      showToast('Venda atualizada!');
-      closeModal();
-    } catch (e) {
-      showToast('Erro ao atualizar.', 'error');
-    }
+    sales[idx] = {
+      ...sales[idx],
+      cliente:    document.getElementById('editCliente').value.trim(),
+      clienteId:  document.getElementById('editClienteId').value.trim(),
+      produto:    document.getElementById('editProduto').value.trim(),
+      valor:      parseFloat(document.getElementById('editValor').value),
+      vencimento: document.getElementById('editVencimento').value,
+      situacao:   document.getElementById('editSituacao').value,
+    };
 
-    setLoading('btnSaveEdit', false, 'Salvar Alterações');
-  };
+    saveSales();
+    renderTable();
+    renderAdminCards();
+    closeModal();
+  }
 
   // ── PAINEL CLIENTE ──
-  function renderClientPanel(mySales) {
-    const sorted   = [...mySales].sort((a, b) => a.vencimento.localeCompare(b.vencimento));
-    const totalGasto = mySales.reduce((a, s) => a + s.valor, 0);
-    const aPagar   = mySales.filter(s => s.situacao === 'pendente' || s.situacao === 'vencido').reduce((a, s) => a + s.valor, 0);
-    const pago     = mySales.filter(s => s.situacao === 'pago').reduce((a, s) => a + s.valor, 0);
+  function renderClientPanel() {
+    const id = currentClient.id;
+    const mySales = sales.filter(s => s.clienteId.toLowerCase() === id);
+
+    const totalGasto   = mySales.reduce((a, s) => a + s.valor, 0);
+    const aPagar       = mySales.filter(s => s.situacao === 'pendente' || s.situacao === 'vencido').reduce((a, s) => a + s.valor, 0);
+    const pago         = mySales.filter(s => s.situacao === 'pago').reduce((a, s) => a + s.valor, 0);
+    const qtd          = mySales.length;
 
     document.getElementById('clientCards').innerHTML = `
-      <div class="card blue"><div class="label">Total de Compras</div><div class="value">${mySales.length}</div></div>
+      <div class="card blue"><div class="label">Total de Compras</div><div class="value">${qtd}</div></div>
       <div class="card green"><div class="label">Total Pago</div><div class="value">${fmt(pago)}</div></div>
       <div class="card yellow"><div class="label">A Pagar</div><div class="value">${fmt(aPagar)}</div></div>
       <div class="card blue"><div class="label">Total Geral</div><div class="value">${fmt(totalGasto)}</div></div>
     `;
 
+    const sorted = [...mySales].sort((a, b) => a.vencimento.localeCompare(b.vencimento));
     const tbody = document.getElementById('clientTableBody');
+
     if (sorted.length === 0) {
       tbody.innerHTML = `<tr><td colspan="5"><div class="empty-state">Nenhuma compra encontrada.</div></td></tr>`;
       return;
@@ -845,21 +841,6 @@
     `).join('');
   }
 
-  // ── LOGOUT ──
-  window.logout = function() {
-    if (unsubscribe) { unsubscribe(); unsubscribe = null; }
-    currentClientId = null;
-    sales = [];
-    document.getElementById('loginScreen').style.display = 'flex';
-    document.getElementById('adminPanel').style.display  = 'none';
-    document.getElementById('clientPanel').style.display = 'none';
-    document.getElementById('adminUser').value  = '';
-    document.getElementById('adminPass').value  = '';
-    document.getElementById('clientId').value   = '';
-    document.getElementById('adminError').textContent  = '';
-    document.getElementById('clientError').textContent = '';
-  };
-
   // ── FECHAR MODAL CLICANDO FORA ──
   document.getElementById('editModal').addEventListener('click', function(e) {
     if (e.target === this) closeModal();
@@ -868,8 +849,8 @@
   // ── ENTER NO LOGIN ──
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
-      if (currentTab === 'admin') window.loginAdmin();
-      else window.loginClient();
+      if (currentTab === 'admin') loginAdmin();
+      else loginClient();
     }
   });
 </script>
